@@ -99,56 +99,10 @@ void bufclear(void){
 	}
 }
 
-typedef char FixedLengthString[128];
-
-typedef struct circular_buffer_fs{
-	uint8_t head;
-	uint8_t tail;
-	const uint8_t maxlen;
-	FixedLengthString* buffer;
-
-} circular_buffer_fs;
-
-circular_buffer_fs FS_CIRCULAR_BUFFER;
-
-void FS_buffer_init(circular_buffer_fs* fs_buffer ){
-	fs_buffer->head = 0;
-	fs_buffer->tail = 0;
-	fs_buffer->maxlen = 16;
-}
-
-void FS_buffer_push(circular_buffer_fs* fs_buffer, char* data,int len){
-	uint8_t next;
-	next = fs_buffer->head +1;
-	if(next >= fs_buffer->maxlen){
-		next = 0;
-	}
-	if (next == c->tail){
-		return -1;
-	}
-
-	strncpy(fs_buffer->buffer[fs_buffer->head],data, len);
-
-	fs_buffer->head = next;
-	return;
-}
 
 
-void FS_buffer_pop(circular_buffer_fs* fs_buffer,char* buffer){
-	uint8_t next;
-    if (fs_buffer->head == fs_buffer->tail){  // if the head == tail, we don't have any data
-        return;
-    }
 
-    next = fs_buffer->tail + 1;  // next is where tail will point to after this read.
-    if(next >= fs_buffer->maxlen){
-        next = 0;
-    }
 
-    *buffer = fs_buffer->buffer[fs_buffer->tail];
-    fs_buffer->tail = next;
-    return;
-}
 
 /* USER CODE END 0 */
 
