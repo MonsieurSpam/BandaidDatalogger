@@ -52,6 +52,7 @@
 SPI_HandleTypeDef hspi1;
 
 UART_HandleTypeDef huart2;
+CircularBuffer FEBBuffer;
 
 /* USER CODE BEGIN PV */
 
@@ -113,6 +114,7 @@ void bufclear(void){
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+
 
   /* USER CODE END 1 */
 
@@ -178,6 +180,8 @@ int main(void)
 
   /* UART testing */
   uint8_t data[20];
+
+  FEB_circBuf_init(&FEBBuffer);
 
   /* USER CODE END 2 */
 
