@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> 
+#include <string.h>
 
 //typedef struct circBuffer CircularBuffer;
 typedef struct circBuffer

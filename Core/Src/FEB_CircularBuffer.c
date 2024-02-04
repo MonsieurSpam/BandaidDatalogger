@@ -1,4 +1,5 @@
-#include "FEB_CircularBuffer.h" 
+#include "FEB_CircularBuffer.h"
+#include "fatfs_sd.h"
 
 
 //typedef struct circBuffer
@@ -50,6 +51,7 @@ void FEB_circBuf_read(CircularBuffer *cb)
         return;
     }
 
+    f_puts(cb->buffer[cb->read], &fp);
     printf("%s", cb->buffer[cb->read]);
     free(cb->buffer[cb->read]);
     cb->read = (cb->read + 1) % cb->capacity;
